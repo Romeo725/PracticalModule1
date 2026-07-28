@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Romeo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            color-scheme: light;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --bg: #f4f7fb;
+            --card: rgba(255, 255, 255, 0.98);
+            --text: #111827;
+            --muted: #475569;
+            --primary: #4f46e5;
+            --primary-soft: #eef2ff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.18), transparent 20%),
+                radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.15), transparent 18%),
+                var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 28px;
+        }
+
+        .about-container {
+            width: min(100%, 1120px);
+            display: grid;
+            grid-template-columns: 1.05fr 1.45fr;
+            background: var(--card);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 860px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .profile-side {
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            color: #ffffff;
+            padding: 48px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-side::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.22), transparent 28%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.14), transparent 22%);
+            pointer-events: none;
+        }
+
+        .profile-side > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+        }
+
+        .profile-side h1 {
+            font-size: 2.4rem;
+            letter-spacing: 0.01em;
+        }
+
+        .profile-side p {
+            font-size: 1rem;
+            opacity: 0.92;
+            max-width: 280px;
+        }
+
+        .profile-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .profile-stat {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 18px;
+            padding: 14px 18px;
+            min-width: 120px;
+        }
+
+        .profile-stat strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .content-side {
+            padding: 42px 46px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section-heading {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            width: fit-content;
+        }
+
+        .content-side p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        @media (max-width: 720px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        .info-card h3 {
+            margin-bottom: 10px;
+            color: #111827;
+            font-size: 1rem;
+        }
+
+        .info-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 0;
+        }
+
+        .skills-list li {
+            background: var(--primary-soft);
+            color: #4338ca;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: transform 0.2s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 16px 30px rgba(79, 70, 229, 0.18);
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #1f2937;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .footer-note {
+            color: #64748b;
+            font-size: 0.88rem;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="about-container">
+        <section class="profile-side">
+            <img class="profile-img" src="./616.jpg" alt="Romeo Mangena">
+            <h1>Romeo Mangena</h1>
+            <p>Java Developer • Web Enthusiast</p>
+            <div class="profile-stats">
+                <div class="profile-stat">
+                    <strong>5+</strong>
+                    Years Experience
+                </div>
+                <div class="profile-stat">
+                    <strong>20+</strong>
+                    Projects Completed
+                </div>
+                <div class="profile-stat">
+                    <strong>Java</strong>
+                    Backend Focus
+                </div>
+            </div>
+        </section>
+
+        <main class="content-side">
+            <div>
+                <h2 class="section-heading">About Romeo</h2>
+                <p>
+                    Hi! My name is Romeo Mduduzi Mangena. I am a passionate Java developer and web creator who loves building clean, engaging digital experiences. When I am not coding, I stay active with football, sharpen my mind with chess, and explore photography.
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Problem Solver</h3>
+                    <p>
+                        I enjoy breaking down complex challenges and turning them into practical, user-friendly solutions.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>Team Player</h3>
+                    <p>
+                        I collaborate well with others, communicate clearly, and help projects move from idea to launch.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="section-heading">Skills & Tools</h2>
+                <ul class="skills-list">
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>Java</li>
+                    <li>JavaScript</li>
+                    <li>Git & GitHub</li>
+                </ul>
+            </div>
+
+            <div class="btn-container">
+                <a href="./RomeoMangena.docx" target="_blank" class="btn btn-secondary">Download CV</a>
+                <a href="mailto:abrahamromeom@gmail.com" class="btn btn-primary">Contact Me</a>
+                <a href="https://github.com/" target="_blank" class="btn btn-secondary">GitHub Profile</a>
+            </div>
+            <p class="footer-note">Available for freelance and full-time opportunities.</p>
+        </main>
+    </div>
+</body>
+
+</html>
