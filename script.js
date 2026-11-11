@@ -101,7 +101,7 @@ function initCopyBankDetails() {
     const copyBtn = document.getElementById('copyBankDetailsBtn');
     if (!copyBtn) return;
 
-    const bankInfo = 'Account Holder: Romeo Mduduzi Mangena\nPassword: 9810035374084';
+    const bankInfo = 'Account Holder: Romeo Mduduzi Mangena\nDocument Password: 9810035374084';
 
     copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(bankInfo).then(() => {
