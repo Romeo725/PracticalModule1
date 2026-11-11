@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCopyEmail();
     initSkillsFilter();
     initCopyBankDetails();
+    initPasswordToggle();
     initBackToTop();
 });
 
@@ -109,6 +110,32 @@ function initCopyBankDetails() {
         }).catch(() => {
             showToast('Failed to copy details');
         });
+    });
+}
+
+/* 6. Toggle Document Password Cover / Mask */
+function initPasswordToggle() {
+    const toggleBtn = document.getElementById('togglePasswordBtn');
+    const passwordValue = document.getElementById('docPasswordValue');
+    if (!toggleBtn || !passwordValue) return;
+
+    const realPassword = '9810035374084';
+    const maskedPassword = '•••••••••••••';
+    let isRevealed = false;
+
+    toggleBtn.addEventListener('click', () => {
+        isRevealed = !isRevealed;
+        if (isRevealed) {
+            passwordValue.textContent = realPassword;
+            passwordValue.classList.remove('password-masked');
+            toggleBtn.textContent = '🙈';
+            toggleBtn.setAttribute('title', 'Hide Password');
+        } else {
+            passwordValue.textContent = maskedPassword;
+            passwordValue.classList.add('password-masked');
+            toggleBtn.textContent = '👁️';
+            toggleBtn.setAttribute('title', 'Show Password');
+        }
     });
 }
 

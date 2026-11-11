@@ -491,6 +491,33 @@ body {
     color: var(--text);
 }
 
+.password-value-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.password-masked {
+    letter-spacing: 2px;
+    font-family: inherit;
+}
+
+.toggle-password-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.8;
+}
+
+.toggle-password-btn:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
 .detail-link {
     font-size: 0.92rem;
     font-weight: 700;
