@@ -91,12 +91,12 @@ body {
 .profile-side {
     background: linear-gradient(135deg, #4f46e5, #06b6d4);
     color: #ffffff;
-    padding: 48px 32px;
+    padding: 52px 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 18px;
     position: relative;
     text-align: center;
 }
@@ -175,6 +175,7 @@ body {
 .profile-img {
     width: 175px;
     height: 175px;
+    display: block;
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid rgba(255, 255, 255, 0.35);
@@ -188,36 +189,49 @@ body {
 }
 
 .profile-side h1 {
-    font-size: 2.3rem;
+    max-width: 100%;
+    font-size: clamp(2rem, 3.5vw, 2.4rem);
+    line-height: 1.08;
     letter-spacing: 0.01em;
     font-weight: 800;
 }
 
 .profile-title {
-    font-size: 1rem;
+    margin-top: -8px;
+    font-size: 1.02rem;
+    letter-spacing: 0.01em;
     opacity: 0.94;
     font-weight: 600;
 }
 
 .location-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     font-size: 0.88rem;
     opacity: 0.9;
-    margin-top: -6px;
+    margin-top: -10px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.12);
 }
 
 .profile-stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 10px;
+    gap: 10px;
+    margin-top: 4px;
     width: 100%;
+    max-width: 360px;
 }
 
 .profile-stat {
     background: rgba(255, 255, 255, 0.14);
     border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 18px;
-    padding: 14px 12px;
+    border-radius: 16px;
+    padding: 15px 10px;
     text-align: center;
     backdrop-filter: blur(6px);
     transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
@@ -243,7 +257,7 @@ body {
 }
 
 .profile-stat span {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     opacity: 0.92;
     line-height: 1.2;
     display: block;
@@ -252,15 +266,17 @@ body {
 .profile-quick-links {
     display: flex;
     gap: 12px;
-    margin-top: 6px;
+    margin-top: 4px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 .quick-link-btn {
     background: rgba(255, 255, 255, 0.18);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
-    width: 42px;
-    height: 42px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     display: flex;
     align-items: center;
