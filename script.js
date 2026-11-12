@@ -1,171 +1,140 @@
+let toastTimeout;
+
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initStatCounters();
     initCopyEmail();
     initSkillsFilter();
-    initCopyBankDetails();
-    initPasswordToggle();
     initBackToTop();
 });
 
-/* 1. Dark/Light Theme Toggle */
 function initThemeToggle() {
     const toggleBtn = document.getElementById('themeToggleBtn');
-    const htmlElement = document.documentElement;
+    const root = document.documentElement;
+    if (!toggleBtn) return;
 
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        htmlElement.setAttribute('data-theme', 'dark');
-        if (toggleBtn) toggleBtn.textContent = '☀️';
-    } else {
-        htmlElement.setAttribute('data-theme', 'light');
-        if (toggleBtn) toggleBtn.textContent = '🌙';
+    let savedTheme;
+    try {
+        savedTheme = localStorage.getItem('theme');
+    } catch (error) {
+        console.warn('Theme preference could not be loaded.', error);
     }
 
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+    const applyTheme = (theme) => {
+        root.dataset.theme = theme;
+        toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        toggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+        toggleBtn.setAttribute('aria-pressed', String(theme === 'dark'));
+    };
 
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-        });
-    }
-}
-
-/* 2. Animated Stat Counters */
-function initStatCounters() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-
-    statNumbers.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-target'), 10);
-        const suffix = stat.getAttribute('data-suffix') || '';
-        let count = 0;
-        const duration = 1200; // ms
-        const increment = Math.max(1, Math.ceil(target / (duration / 30)));
-
-        const timer = setInterval(() => {
-            count += increment;
-            if (count >= target) {
-                count = target;
-                clearInterval(timer);
-            }
-            stat.textContent = count + suffix;
-        }, 30);
-    });
-}
-
-/* 3. Copy Email to Clipboard with Toast Notification */
-function initCopyEmail() {
-    const copyBtn = document.getElementById('copyEmailBtn');
-    const email = 'abrahamromeom@gmail.com';
-
-    if (copyBtn) {
-        copyBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(email).then(() => {
-                showToast('Email address copied!');
-            }).catch(() => {
-                showToast('Failed to copy email');
-            });
-        });
-    }
-}
-
-/* 4. Interactive Skills Filter Fixture */
-function initSkillsFilter() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const skillItems = document.querySelectorAll('#skillsList li');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filter = btn.getAttribute('data-filter');
-            skillItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                if (filter === 'all' || filter === category) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        });
-    });
-}
-
-/* 5. Copy Bank Details */
-function initCopyBankDetails() {
-    const copyBtn = document.getElementById('copyBankDetailsBtn');
-    if (!copyBtn) return;
-
-    const bankInfo = 'Account Holder: Romeo Mduduzi Mangena\nDocument Password: 9810035374084';
-
-    copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(bankInfo).then(() => {
-            showToast('Account details copied to clipboard!');
-        }).catch(() => {
-            showToast('Failed to copy details');
-        });
-    });
-}
-
-/* 6. Toggle Document Password Cover / Mask */
-function initPasswordToggle() {
-    const toggleBtn = document.getElementById('togglePasswordBtn');
-    const passwordValue = document.getElementById('docPasswordValue');
-    if (!toggleBtn || !passwordValue) return;
-
-    const realPassword = '9810035374084';
-    const maskedPassword = '•••••••••••••';
-    let isRevealed = false;
+    applyTheme(savedTheme === 'dark' || (!savedTheme && prefersDark) ? 'dark' : 'light');
 
     toggleBtn.addEventListener('click', () => {
-        isRevealed = !isRevealed;
-        if (isRevealed) {
-            passwordValue.textContent = realPassword;
-            passwordValue.classList.remove('password-masked');
-            toggleBtn.textContent = '🙈';
-            toggleBtn.setAttribute('title', 'Hide Password');
-        } else {
-            passwordValue.textContent = maskedPassword;
-            passwordValue.classList.add('password-masked');
-            toggleBtn.textContent = '👁️';
-            toggleBtn.setAttribute('title', 'Show Password');
+        const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(theme);
+        try {
+            localStorage.setItem('theme', theme);
+        } catch (error) {
+            console.warn('Theme preference could not be saved.', error);
         }
     });
 }
 
-/* 6. Back to Top Button */
+function initStatCounters() {
+    const stats = document.querySelectorAll('.stat-number');
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    if (reducedMotion) return;
+
+    stats.forEach((stat) => {
+        const target = Number(stat.dataset.target);
+        if (!Number.isFinite(target) || target < 0) return;
+
+        const suffix = stat.dataset.suffix || '';
+        const duration = 1200;
+        let startTime;
+
+        const animate = (timestamp) => {
+            startTime ??= timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            stat.textContent = `${Math.round(target * easedProgress)}${suffix}`;
+
+            if (progress < 1) {
+                window.requestAnimationFrame(animate);
+            }
+        };
+
+        stat.textContent = `0${suffix}`;
+        window.requestAnimationFrame(animate);
+    });
+}
+
+function initCopyEmail() {
+    const copyBtn = document.getElementById('copyEmailBtn');
+    if (!copyBtn) return;
+
+    copyBtn.addEventListener('click', async () => {
+        try {
+            if (!navigator.clipboard?.writeText) {
+                throw new Error('Clipboard access is unavailable.');
+            }
+            await navigator.clipboard.writeText('abrahamromeom@gmail.com');
+            showToast('Email address copied!');
+        } catch {
+            showToast('Could not copy email. Please use the Contact Me link.');
+        }
+    });
+}
+
+function initSkillsFilter() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const skillItems = document.querySelectorAll('#skillsList li');
+
+    filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.filter;
+
+            filterButtons.forEach((item) => {
+                const isActive = item === button;
+                item.classList.toggle('active', isActive);
+                item.setAttribute('aria-pressed', String(isActive));
+            });
+
+            skillItems.forEach((item) => {
+                item.hidden = filter !== 'all' && item.dataset.category !== filter;
+            });
+        });
+    });
+}
+
 function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTopBtn');
     if (!backToTopBtn) return;
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
-        }
-    });
+    const updateVisibility = () => {
+        backToTopBtn.classList.toggle('show', window.scrollY > 300);
+    };
 
-    backToTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    updateVisibility();
+
+    backToTopBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+        window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
     });
 }
 
-/* Helper: Toast Notification */
 function showToast(message) {
     const toast = document.getElementById('toast');
     if (!toast) return;
 
+    window.clearTimeout(toastTimeout);
     toast.textContent = message;
     toast.classList.add('show');
-    setTimeout(() => {
+    toastTimeout = window.setTimeout(() => {
         toast.classList.remove('show');
+        toast.textContent = '';
     }, 2500);
 }

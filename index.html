@@ -8,14 +8,15 @@
     <meta property="og:title" content="Romeo Mangena | Java Developer Portfolio">
     <meta property="og:description" content="Java Developer & Web Enthusiast building clean, scalable backend services and responsive web applications.">
     <meta property="og:image" content="./616.jpg">
-    <title>About Romeo | Java Developer</title>
+    <meta name="theme-color" content="#4f46e5">
+    <title>Romeo Mangena | Java Developer Portfolio</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
+<body id="top">
     <div class="about-container">
         <section class="profile-side">
-            <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+            <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Switch to dark theme" aria-pressed="false">
                 🌙
             </button>
             <div class="status-badge">
@@ -31,12 +32,12 @@
             <div class="profile-stats">
                 <div class="profile-stat">
                     <span class="stat-icon">💼</span>
-                    <strong class="stat-number" data-target="5" data-suffix="+">0+</strong>
+                    <strong class="stat-number" data-target="5" data-suffix="+">5+</strong>
                     <span>Years Experience</span>
                 </div>
                 <div class="profile-stat">
                     <span class="stat-icon">🚀</span>
-                    <strong class="stat-number" data-target="20" data-suffix="+">0+</strong>
+                    <strong class="stat-number" data-target="20" data-suffix="+">20+</strong>
                     <span>Projects Built</span>
                 </div>
                 <div class="profile-stat">
@@ -46,15 +47,15 @@
                 </div>
                 <div class="profile-stat">
                     <span class="stat-icon">⚡</span>
-                    <strong class="stat-number" data-target="100" data-suffix="%">0%</strong>
+                    <strong class="stat-number" data-target="100" data-suffix="%">100%</strong>
                     <span>Code Quality</span>
                 </div>
             </div>
 
             <div class="profile-quick-links">
-                <a href="mailto:abrahamromeom@gmail.com" class="quick-link-btn" title="Email Romeo">✉️</a>
-                <a href="https://github.com/" target="_blank" class="quick-link-btn" title="GitHub Profile">💻</a>
-                <a href="./RomeoMduduziMangena.pdf" target="_blank" class="quick-link-btn" title="View CV">📄</a>
+                <a href="mailto:abrahamromeom@gmail.com" class="quick-link-btn" aria-label="Email Romeo">✉️</a>
+                <a href="https://github.com/Romeo725" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="GitHub Profile">💻</a>
+                <a href="./RomeoMduduziMangena.pdf" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View CV">📄</a>
             </div>
         </section>
 
@@ -109,11 +110,11 @@
             <!-- Interactive Skills Fixture -->
             <div>
                 <h2 class="section-heading">Skills & Tech Stack</h2>
-                <div class="skills-filter-tabs">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="backend">Backend</button>
-                    <button class="filter-btn" data-filter="frontend">Frontend</button>
-                    <button class="filter-btn" data-filter="tools">Tools & DB</button>
+                <div class="skills-filter-tabs" role="group" aria-label="Filter skills">
+                    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true" aria-controls="skillsList">All</button>
+                    <button class="filter-btn" type="button" data-filter="backend" aria-pressed="false" aria-controls="skillsList">Backend</button>
+                    <button class="filter-btn" type="button" data-filter="frontend" aria-pressed="false" aria-controls="skillsList">Frontend</button>
+                    <button class="filter-btn" type="button" data-filter="tools" aria-pressed="false" aria-controls="skillsList">Tools & DB</button>
                 </div>
                 <ul class="skills-list" id="skillsList">
                     <li data-category="backend">Java</li>
@@ -142,43 +143,33 @@
                             <span class="detail-value">Romeo Mduduzi Mangena</span>
                         </div>
                         <div class="bank-detail-item">
-                            <span class="detail-label">Document Password</span>
-                            <span class="password-value-wrapper">
-                                <span class="detail-value password-masked" id="docPasswordValue">•••••••••••••</span>
-                                <button class="toggle-password-btn" id="togglePasswordBtn" title="Show Password" aria-label="Toggle password visibility">👁️</button>
-                            </span>
-                        </div>
-                        <div class="bank-detail-item">
                             <span class="detail-label">Verification Doc</span>
-                            <a href="./AccountConfirmationDocument.pdf" target="_blank" class="detail-link">View Bank Confirmation PDF 📄</a>
+                            <a href="./AccountConfirmationDocument.pdf" target="_blank" rel="noopener noreferrer" class="detail-link">View Bank Confirmation PDF 📄</a>
                         </div>
                     </div>
                     <div class="donation-actions">
-                        <a href="./AccountConfirmationDocument.pdf" target="_blank" download="AccountConfirmationDocument.pdf" class="btn btn-primary">
+                        <a href="./AccountConfirmationDocument.pdf" target="_blank" rel="noopener noreferrer" download="AccountConfirmationDocument.pdf" class="btn btn-primary">
                             📄 Download Bank Confirmation PDF
                         </a>
-                        <button class="btn btn-secondary" id="copyBankDetailsBtn">
-                            📋 Copy Details
-                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="btn-container">
-                <a href="./RomeoMduduziMangena.pdf" target="_blank" download="RomeoMduduziMangena.pdf" class="btn btn-secondary">Download CV</a>
+                <a href="./RomeoMduduziMangena.pdf" target="_blank" rel="noopener noreferrer" download="RomeoMduduziMangena.pdf" class="btn btn-secondary">Download CV</a>
                 <a href="mailto:abrahamromeom@gmail.com" class="btn btn-primary">Contact Me</a>
-                <button class="btn btn-secondary" id="copyEmailBtn">Copy Email</button>
-                <a href="https://github.com/" target="_blank" class="btn btn-secondary">GitHub Profile</a>
+                <button class="btn btn-secondary" id="copyEmailBtn" type="button">Copy Email</button>
+                <a href="https://github.com/Romeo725" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Profile</a>
             </div>
             <p class="footer-note">Available for freelance and full-time opportunities.</p>
         </main>
     </div>
 
     <!-- Toast Notification -->
-    <div class="toast" id="toast">Email address copied!</div>
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <!-- Back to Top Floating Button -->
-    <a href="#" class="back-to-top" id="backToTopBtn" title="Back to top">↑</a>
+    <a href="#top" class="back-to-top" id="backToTopBtn" aria-label="Back to top">↑</a>
 
     <!-- External JavaScript -->
     <script src="./script.js"></script>

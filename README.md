@@ -4,13 +4,13 @@ A modern, responsive, and interactive personal website and developer portfolio b
 
 ## 💡 Features
 
-- 🌓 **Dark & Light Mode Toggle**: Persisted theme choice using `localStorage` and system preference detection.
-- 💼 **Interactive Profile & Stats**: Animated count-up numbers for experience stats and clean 2x2 grid layout.
+- 🌓 **Dark & Light Mode Toggle**: Persists the theme when browser storage is available and follows system preference by default.
+- 💼 **Interactive Profile & Stats**: Animated count-up numbers respect reduced-motion preferences and have useful static values without JavaScript.
 - 🚀 **Featured Projects Grid**: Highlight section showing key Java backend and frontend web projects with tech stack pills.
 - 🏷️ **Categorized Skills Filter**: Interactive filter tabs (`All`, `Backend`, `Frontend`, `Tools & DB`) to filter skills seamlessly.
-- ☕ **Support & Donations Fixture**: Direct bank details card with downloadable PDF confirmation (`AccountConfirmationDocument.pdf`) and one-click copy details.
+- ☕ **Support & Donations**: Account-holder information and downloadable PDF confirmation (`AccountConfirmationDocument.pdf`).
 - 📄 **CV Integration**: Direct download and view link for `RomeoMduduziMangena.pdf`.
-- 📋 **Toast Notifications**: Interactive clipboard copy feedback for Email & Bank details.
+- 📋 **Toast Notifications**: Clipboard feedback for the contact email, with an accessible status announcement.
 - ⬆️ **Smooth Scroll & Back-to-Top**: Floating back-to-top button for mobile and desktop user navigation.
 
 ## 📁 File Structure
