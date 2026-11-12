@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initStatCounters();
     initCopyEmail();
     initSkillsFilter();
+    initPasswordHelp();
     initBackToTop();
 });
 
@@ -105,6 +106,22 @@ function initSkillsFilter() {
                 item.hidden = filter !== 'all' && item.dataset.category !== filter;
             });
         });
+    });
+}
+
+function initPasswordHelp() {
+    const helpButton = document.getElementById('passwordHelpBtn');
+    const helpNote = document.getElementById('passwordNote');
+    if (!helpButton || !helpNote) return;
+
+    helpButton.addEventListener('click', () => {
+        const isExpanded = helpButton.getAttribute('aria-expanded') === 'true';
+        helpButton.setAttribute('aria-expanded', String(!isExpanded));
+        helpButton.setAttribute(
+            'aria-label',
+            isExpanded ? 'Show password access instructions' : 'Hide password access instructions'
+        );
+        helpNote.hidden = isExpanded;
     });
 }
 

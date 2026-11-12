@@ -146,9 +146,12 @@
                             <span class="detail-label">Document Password</span>
                             <span class="password-value-wrapper">
                                 <span class="detail-value password-masked" role="img" aria-label="Password hidden">••••••••••••</span>
-                                <span class="password-cover-icon" aria-hidden="true">👁️</span>
+                                <button class="password-cover-icon" id="passwordHelpBtn" type="button" aria-label="Show password access instructions" aria-expanded="false" aria-controls="passwordNote">👁️</button>
                             </span>
-                            <span class="password-note">Available by request.</span>
+                            <span class="password-note" id="passwordNote" hidden>
+                                The password is shared privately.
+                                <a href="mailto:abrahamromeom@gmail.com?subject=Document%20password%20request">Request it by email</a>.
+                            </span>
                         </div>
                         <div class="bank-detail-item">
                             <span class="detail-label">Verification Doc</span>
