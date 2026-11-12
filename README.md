@@ -6,8 +6,9 @@ A modern, responsive, and interactive personal website and developer portfolio b
 
 - 🌓 **Dark & Light Mode Toggle**: Persists the theme when browser storage is available and follows system preference by default.
 - 💼 **Interactive Profile & Stats**: Animated count-up numbers respect reduced-motion preferences and have useful static values without JavaScript.
+- 🧰 **CV-Based Experience & Education**: Summarizes professional roles, academic background, and selected academic honors.
 - 🚀 **Featured Projects Grid**: Highlight section showing key Java backend and frontend web projects with tech stack pills.
-- 🏷️ **Categorized Skills Filter**: Interactive filter tabs (`All`, `Backend`, `Frontend`, `Tools & DB`) to filter skills seamlessly.
+- 🏷️ **Categorized Skills Filter**: Filter skills across backend, frontend, data, tools/testing, and professional categories.
 - ☕ **Support & Donations**: Account-holder information and downloadable PDF confirmation (`AccountConfirmationDocument.pdf`).
 - 📄 **CV Integration**: Direct download and view link for `RomeoMduduziMangena.pdf`.
 - 📋 **Toast Notifications**: Clipboard feedback for the contact email, with an accessible status announcement.
