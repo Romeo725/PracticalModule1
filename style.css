@@ -510,20 +510,14 @@ body {
     font-family: inherit;
 }
 
-.toggle-password-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
+.password-cover-icon {
     font-size: 0.95rem;
-    padding: 2px 4px;
-    border-radius: 4px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
     opacity: 0.8;
 }
 
-.toggle-password-btn:hover {
-    opacity: 1;
-    transform: scale(1.15);
+.password-note {
+    color: var(--muted);
+    font-size: 0.82rem;
 }
 
 .detail-link {
