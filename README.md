@@ -13,6 +13,7 @@ A modern, responsive, and interactive personal website and developer portfolio b
 - 🏷️ **Categorized Skills Filter**: Filter skills across backend, frontend, data, tools/testing, and professional categories.
 - ☕ **Support & Donations**: Account-holder information and downloadable PDF confirmation (`AccountConfirmationDocument.pdf`).
 - 📄 **CV Integration**: Direct download and view link for `RomeoMduduziMangena.pdf`.
+- 🔗 **Professional Profiles**: Quick links to GitHub and LinkedIn.
 - 📋 **Toast Notifications**: Clipboard feedback for the contact email, with an accessible status announcement.
 - ⬆️ **Smooth Scroll & Back-to-Top**: Floating back-to-top button for mobile and desktop user navigation.
 
