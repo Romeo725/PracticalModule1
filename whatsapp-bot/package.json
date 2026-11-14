@@ -1,0 +1,13 @@
+{
+  "name": "romeo-portfolio-whatsapp-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WhatsApp Cloud API FAQ bot for the Romeo Mangena portfolio",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
