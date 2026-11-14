@@ -606,48 +606,6 @@ body {
     color: var(--text);
 }
 
-.password-value-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.password-masked {
-    letter-spacing: 2px;
-    font-family: inherit;
-}
-
-.password-cover-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 5px;
-    border: 0;
-    border-radius: 6px;
-    background: transparent;
-    color: var(--muted);
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.password-cover-icon:hover,
-.password-cover-icon[aria-expanded="true"] {
-    background: var(--primary-soft);
-    color: var(--primary);
-}
-
-.password-note {
-    color: var(--muted);
-    font-size: 0.82rem;
-    line-height: 1.5;
-}
-
-.password-note a {
-    color: var(--primary);
-    font-weight: 700;
-}
-
 .detail-link {
     font-size: 0.92rem;
     font-weight: 700;
