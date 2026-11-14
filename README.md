@@ -23,6 +23,7 @@ PracticalModule1/
 ├── script.js                       # Modular JavaScript functions
 ├── 616.jpg                         # Profile avatar image
 ├── RomeoMduduziMangena.pdf         # Downloadable CV document
+├── UW_AD_UGF0_N.pdf                # Education document displayed in the education section
 ├── AccountConfirmationDocument.pdf # Downloadable Bank Confirmation document
 └── README.md                       # Documentation
 ```
