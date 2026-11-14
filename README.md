@@ -5,6 +5,7 @@ A modern, responsive, and interactive personal website and developer portfolio b
 ## 💡 Features
 
 - 🌓 **Dark & Light Mode Toggle**: Persists the theme when browser storage is available and follows system preference by default.
+- ✨ **Scroll-Driven UI Effects**: Reading progress indicator, active section navigation, and reduced-motion-aware reveal animations.
 - 💼 **Interactive Profile & Stats**: Animated count-up numbers respect reduced-motion preferences and have useful static values without JavaScript.
 - 🧰 **CV-Based Experience & Education**: Summarizes professional roles, academic background, and selected academic honors.
 - 🚀 **Featured Projects Grid**: Highlight section showing key Java backend and frontend web projects with tech stack pills.

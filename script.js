@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCopyEmail();
     initSkillsFilter();
     initBackToTop();
+    initScrollEffects();
 });
 
 function initThemeToggle() {
@@ -123,6 +124,70 @@ function initBackToTop() {
         event.preventDefault();
         const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
         window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+}
+
+function initScrollEffects() {
+    const progressBar = document.getElementById('scrollProgressBar');
+    let updateScheduled = false;
+
+    const updateProgress = () => {
+        updateScheduled = false;
+        if (!progressBar) return;
+
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+        progressBar.style.transform = `scaleX(${Math.min(Math.max(progress, 0), 1)})`;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (updateScheduled) return;
+        updateScheduled = true;
+        window.requestAnimationFrame(updateProgress);
+    }, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
+    const sections = Array.from(navLinks)
+        .map((link) => document.querySelector(link.getAttribute('href')))
+        .filter((section) => section instanceof HTMLElement);
+
+    if ('IntersectionObserver' in window && sections.length > 0) {
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                navLinks.forEach((link) => {
+                    if (link.getAttribute('href') === `#${entry.target.id}`) {
+                        link.setAttribute('aria-current', 'location');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            });
+        }, { rootMargin: '-20% 0px -65% 0px' });
+
+        sections.forEach((section) => navObserver.observe(section));
+    }
+
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    if (reducedMotion || !('IntersectionObserver' in window)) return;
+
+    const revealTargets = document.querySelectorAll(
+        '.hero, .content-section, .info-card, .experience-card, .education-card, .project-card'
+    );
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.12 });
+
+    revealTargets.forEach((target) => {
+        target.classList.add('reveal-ready');
+        revealObserver.observe(target);
     });
 }
 
