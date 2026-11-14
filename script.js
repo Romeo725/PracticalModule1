@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initStatCounters();
     initCopyEmail();
     initSkillsFilter();
+    initMobileNav();
     initBackToTop();
     initScrollEffects();
 });
@@ -22,23 +23,32 @@ function initThemeToggle() {
     }
 
     const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    let hasSavedTheme = savedTheme === 'dark' || savedTheme === 'light';
     const applyTheme = (theme) => {
         root.dataset.theme = theme;
         toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
         toggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
         toggleBtn.setAttribute('aria-pressed', String(theme === 'dark'));
+        themeColor?.setAttribute('content', theme === 'dark' ? '#0f172a' : '#4f46e5');
     };
 
     applyTheme(savedTheme === 'dark' || (!savedTheme && prefersDark) ? 'dark' : 'light');
 
     toggleBtn.addEventListener('click', () => {
         const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        hasSavedTheme = true;
         applyTheme(theme);
         try {
             localStorage.setItem('theme', theme);
         } catch (error) {
             console.warn('Theme preference could not be saved.', error);
         }
+    });
+
+    const colorScheme = window.matchMedia?.('(prefers-color-scheme: dark)');
+    colorScheme?.addEventListener?.('change', (event) => {
+        if (!hasSavedTheme) applyTheme(event.matches ? 'dark' : 'light');
     });
 }
 
@@ -91,10 +101,34 @@ function initCopyEmail() {
 function initSkillsFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const skillItems = document.querySelectorAll('#skillsList li');
+    const searchInput = document.getElementById('skillSearch');
+    const resultCount = document.getElementById('skillsResultCount');
+    let activeFilter = 'all';
+
+    const updateSkills = () => {
+        const searchTerm = searchInput instanceof HTMLInputElement
+            ? searchInput.value.trim().toLocaleLowerCase()
+            : '';
+        let visibleCount = 0;
+
+        skillItems.forEach((item) => {
+            const matchesCategory = activeFilter === 'all' || item.dataset.category === activeFilter;
+            const matchesSearch = item.textContent?.toLocaleLowerCase().includes(searchTerm) ?? false;
+            const isVisible = matchesCategory && matchesSearch;
+            item.hidden = !isVisible;
+            if (isVisible) visibleCount += 1;
+        });
+
+        if (resultCount) {
+            resultCount.textContent = visibleCount === 0
+                ? 'No matching skills'
+                : `Showing ${visibleCount} of ${skillItems.length} skills`;
+        }
+    };
 
     filterButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            const filter = button.dataset.filter;
+            activeFilter = button.dataset.filter || 'all';
 
             filterButtons.forEach((item) => {
                 const isActive = item === button;
@@ -102,10 +136,51 @@ function initSkillsFilter() {
                 item.setAttribute('aria-pressed', String(isActive));
             });
 
-            skillItems.forEach((item) => {
-                item.hidden = filter !== 'all' && item.dataset.category !== filter;
-            });
+            updateSkills();
         });
+    });
+
+    searchInput?.addEventListener('input', updateSkills);
+    updateSkills();
+}
+
+function initMobileNav() {
+    const toggleBtn = document.getElementById('navToggleBtn');
+    const siteNav = document.getElementById('siteNav');
+    if (!toggleBtn || !siteNav || !window.matchMedia) return;
+
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+    toggleBtn.hidden = false;
+
+    const setMenuOpen = (isOpen) => {
+        siteNav.classList.toggle('is-collapsed', !isOpen);
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+        toggleBtn.setAttribute('aria-label', `${isOpen ? 'Close' : 'Open'} navigation`);
+    };
+
+    setMenuOpen(!mobileQuery.matches);
+    const handleBreakpointChange = (event) => setMenuOpen(!event.matches);
+    if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener('change', handleBreakpointChange);
+    } else {
+        mobileQuery.addListener(handleBreakpointChange);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        setMenuOpen(toggleBtn.getAttribute('aria-expanded') !== 'true');
+    });
+
+    siteNav.addEventListener('click', (event) => {
+        if (event.target instanceof Element && event.target.closest('a') && mobileQuery.matches) {
+            setMenuOpen(false);
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && mobileQuery.matches && toggleBtn.getAttribute('aria-expanded') === 'true') {
+            setMenuOpen(false);
+            toggleBtn.focus();
+        }
     });
 }
 

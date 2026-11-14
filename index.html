@@ -14,13 +14,18 @@
 </head>
 
 <body id="top">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="scroll-progress" aria-hidden="true">
         <span class="scroll-progress-bar" id="scrollProgressBar"></span>
     </div>
     <div class="site-shell">
         <header class="site-header">
             <a class="site-brand" href="#top">Romeo Mangena <span>Portfolio</span></a>
-            <nav class="site-nav" aria-label="Main navigation">
+            <button class="nav-toggle" id="navToggleBtn" type="button" aria-expanded="true" aria-controls="siteNav" aria-label="Close navigation" hidden>
+                <span class="menu-icon" aria-hidden="true"></span>
+                <span>Menu</span>
+            </button>
+            <nav class="site-nav" id="siteNav" aria-label="Main navigation">
                 <a href="#about">About</a>
                 <a href="#experience">Experience</a>
                 <a href="#education">Education</a>
@@ -29,12 +34,12 @@
                 <a href="#support">Support</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+            <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Toggle color theme">
                 🌙
             </button>
         </header>
 
-        <main class="content-side">
+        <main class="content-side" id="main-content">
             <section class="hero" aria-labelledby="hero-title">
                 <div class="hero-copy">
                     <div class="status-badge">
@@ -231,6 +236,14 @@
 
             <section class="content-section" aria-labelledby="skills-heading" id="skills">
                 <h2 class="section-heading" id="skills-heading">Skills & Tech Stack</h2>
+                <div class="skills-tools">
+                    <label class="skill-search">
+                        <span class="visually-hidden">Search skills</span>
+                        <span class="search-icon" aria-hidden="true">⌕</span>
+                        <input id="skillSearch" type="search" placeholder="Search skills..." autocomplete="off" aria-controls="skillsList">
+                    </label>
+                    <p class="skills-result-count" id="skillsResultCount" aria-live="polite"></p>
+                </div>
                 <div class="skills-filter-tabs" role="group" aria-label="Filter skills">
                     <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true" aria-controls="skillsList">All</button>
                     <button class="filter-btn" type="button" data-filter="backend" aria-pressed="false" aria-controls="skillsList">Backend</button>
