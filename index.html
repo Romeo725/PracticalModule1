@@ -14,75 +14,91 @@
 </head>
 
 <body id="top">
-    <div class="about-container">
-        <section class="profile-side">
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="site-brand" href="#top">Romeo Mangena <span>Portfolio</span></a>
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#support">Support</a>
+                <a href="#contact">Contact</a>
+            </nav>
             <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Switch to dark theme" aria-pressed="false">
                 🌙
             </button>
-            <div class="status-badge">
-                <span class="status-dot"></span> Available for Work
-            </div>
-            <div class="profile-img-container">
-                <img class="profile-img" src="./616.jpg" alt="" width="175" height="175" fetchpriority="high" decoding="async">
-            </div>
-            <h1>Romeo Mangena</h1>
-            <p class="profile-title">Java Developer • Web Enthusiast</p>
-            <p class="location-tag">📍 Johannesburg, South Africa</p>
-
-            <div class="profile-stats">
-                <div class="profile-stat">
-                    <span class="stat-icon">💼</span>
-                    <strong class="stat-number" data-target="5" data-suffix="+">5+</strong>
-                    <span>Years Experience</span>
-                </div>
-                <div class="profile-stat">
-                    <span class="stat-icon">🚀</span>
-                    <strong class="stat-number" data-target="20" data-suffix="+">20+</strong>
-                    <span>Projects Built</span>
-                </div>
-                <div class="profile-stat">
-                    <span class="stat-icon">☕</span>
-                    <strong>Java</strong>
-                    <span>Backend Focus</span>
-                </div>
-                <div class="profile-stat">
-                    <span class="stat-icon">⚡</span>
-                    <strong class="stat-number" data-target="100" data-suffix="%">100%</strong>
-                    <span>Code Quality</span>
-                </div>
-            </div>
-
-            <div class="profile-quick-links">
-                <a href="mailto:abrahamromeom@gmail.com" class="quick-link-btn" aria-label="Email Romeo">✉️</a>
-                <a href="https://github.com/Romeo725" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="GitHub Profile">💻</a>
-                <a href="./RomeoMduduziMangena.pdf" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View CV">📄</a>
-            </div>
-        </section>
+        </header>
 
         <main class="content-side">
-            <div>
-                <h2 class="section-heading">About Romeo</h2>
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="hero-copy">
+                    <div class="status-badge">
+                        <span class="status-dot"></span> Available for Work
+                    </div>
+                    <div class="hero-portrait">
+                        <img src="./616.jpg" alt="Portrait of Romeo Mangena" width="128" height="128" fetchpriority="high" decoding="async">
+                    </div>
+                    <p class="hero-eyebrow">Portfolio / 2026</p>
+                    <h1 id="hero-title">Romeo Mangena</h1>
+                    <p class="profile-title">Java Developer • Web Enthusiast</p>
+                    <p class="location-tag">📍 Johannesburg, South Africa</p>
+                    <div class="btn-container hero-actions" id="contact">
+                        <a href="./RomeoMduduziMangena.pdf" target="_blank" rel="noopener noreferrer" download="RomeoMduduziMangena.pdf" class="btn btn-primary">Download CV</a>
+                        <a href="mailto:abrahamromeom@gmail.com" class="btn btn-light"><span aria-hidden="true">✉️</span> Contact Me</a>
+                        <button class="btn btn-ghost" id="copyEmailBtn" type="button">Copy Email</button>
+                        <a href="https://github.com/Romeo725" target="_blank" rel="noopener noreferrer" class="btn btn-ghost"><span aria-hidden="true">💻</span> GitHub Profile</a>
+                        <a href="./RomeoMduduziMangena.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-ghost"><span aria-hidden="true">📄</span> View CV</a>
+                    </div>
+                </div>
+                <div class="profile-stats" role="group" aria-label="Portfolio statistics">
+                    <div class="profile-stat">
+                        <span class="stat-icon">💼</span>
+                        <strong class="stat-number" data-target="5" data-suffix="+">5+</strong>
+                        <span>Years Experience</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="stat-icon">🚀</span>
+                        <strong class="stat-number" data-target="20" data-suffix="+">20+</strong>
+                        <span>Projects Built</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="stat-icon">☕</span>
+                        <strong>Java</strong>
+                        <span>Backend Focus</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="stat-icon">⚡</span>
+                        <strong class="stat-number" data-target="100" data-suffix="%">100%</strong>
+                        <span>Code Quality</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" aria-labelledby="about-heading" id="about">
+                <h2 class="section-heading" id="about-heading">About Romeo</h2>
                 <p>
                     I am a Computational and Applied Mathematics graduate with experience in software development, data analysis, mathematical modelling, and mentoring. I enjoy using analytical thinking and practical engineering to solve business and technology problems.
                 </p>
-            </div>
 
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Problem Solver</h3>
-                    <p>
-                        I enjoy breaking down complex challenges and turning them into practical, user-friendly solutions.
-                    </p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Problem Solver</h3>
+                        <p>
+                            I enjoy breaking down complex challenges and turning them into practical, user-friendly solutions.
+                        </p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Team Player</h3>
+                        <p>
+                            I collaborate well with others, communicate clearly, and help projects move from idea to launch.
+                        </p>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <h3>Team Player</h3>
-                    <p>
-                        I collaborate well with others, communicate clearly, and help projects move from idea to launch.
-                    </p>
-                </div>
-            </div>
+            </section>
 
-            <section aria-labelledby="experience-heading">
+            <section class="content-section" aria-labelledby="experience-heading" id="experience">
                 <h2 class="section-heading" id="experience-heading">Professional Experience</h2>
                 <div class="experience-list">
                     <article class="experience-card">
@@ -154,7 +170,7 @@
                 </div>
             </section>
 
-            <section aria-labelledby="education-heading">
+            <section class="content-section" aria-labelledby="education-heading" id="education">
                 <h2 class="section-heading" id="education-heading">Education & Highlights</h2>
                 <article class="education-card">
                     <div class="experience-card-header">
@@ -171,9 +187,8 @@
                 </article>
             </section>
 
-            <!-- Featured Projects Fixture -->
-            <div>
-                <h2 class="section-heading">Featured Projects</h2>
+            <section class="content-section" aria-labelledby="projects-heading" id="projects">
+                <h2 class="section-heading" id="projects-heading">Featured Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
                         <h4>Banking REST Service</h4>
@@ -194,11 +209,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Interactive Skills Fixture -->
-            <div>
-                <h2 class="section-heading">Skills & Tech Stack</h2>
+            <section class="content-section" aria-labelledby="skills-heading" id="skills">
+                <h2 class="section-heading" id="skills-heading">Skills & Tech Stack</h2>
                 <div class="skills-filter-tabs" role="group" aria-label="Filter skills">
                     <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true" aria-controls="skillsList">All</button>
                     <button class="filter-btn" type="button" data-filter="backend" aria-pressed="false" aria-controls="skillsList">Backend</button>
@@ -233,11 +247,10 @@
                     <li data-category="professional">Stakeholder Coordination</li>
                     <li data-category="professional">Research Presentation</li>
                 </ul>
-            </div>
+            </section>
 
-            <!-- Support & Donation Section -->
-            <div>
-                <h2 class="section-heading">Support & Contributions ☕</h2>
+            <section class="content-section" aria-labelledby="support-heading" id="support">
+                <h2 class="section-heading" id="support-heading">Support & Contributions ☕</h2>
                 <div class="donation-card">
                     <div class="donation-header">
                         <h3>Direct Bank Support</h3>
@@ -279,14 +292,8 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="btn-container">
-                <a href="./RomeoMduduziMangena.pdf" target="_blank" rel="noopener noreferrer" download="RomeoMduduziMangena.pdf" class="btn btn-secondary">Download CV</a>
-                <a href="mailto:abrahamromeom@gmail.com" class="btn btn-primary">Contact Me</a>
-                <button class="btn btn-secondary" id="copyEmailBtn" type="button">Copy Email</button>
-                <a href="https://github.com/Romeo725" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Profile</a>
-            </div>
             <p class="footer-note">Available for freelance and full-time opportunities.</p>
         </main>
     </div>
